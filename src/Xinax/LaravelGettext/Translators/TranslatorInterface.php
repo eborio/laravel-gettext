@@ -100,12 +100,11 @@ interface TranslatorInterface
      * Translates a plural string
      *
      * @param $singular
-     * @param $plural
      * @param $count
      *
      * @return mixed
      */
-    public function translatePlural($singular, $plural, $count);
+    public function translatePlural($singular, $count);
 
     /**
      * Translate a plural string that is only on one line separated with pipes

@@ -75,17 +75,16 @@ if (!function_exists('_n')) {
      * Can be use an array on args or use the number of the arguments
      *
      * @param  string      $singular the singular message to be translated
-     * @param  string      $plural   the plural message to be translated if the $count > 1
      * @param  int         $count    the number of occurrence to be used to pluralize the $singular
      * @param  array|mixed $args     the tokens values used inside $singular or $plural
      *
      * @return string the message translated, pluralized and formatted
      */
-    function _n($singular, $plural, $count, $args = null)
+    function _n($singular, $count, $args = null)
     {
 
         $translator = app(LaravelGettext::class);
-        $message    = $translator->translatePlural($singular, $plural, $count);
+        $message    = $translator->translatePlural($singular, $count);
 
         if (isset($args) && !is_array($args)) {
             $args = array_slice(func_get_args(), 3);
