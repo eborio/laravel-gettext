@@ -128,15 +128,9 @@ class Symfony extends BaseTranslator
      */
     public function translatePlural($singular, $plural, $amount)
     {
-        return $this->symfonyTranslator->transChoice(
-        // Symfony translator looks for 'singular|plural' message id in catalog,
-        // and obviously doesn't exists, so always the fallback string will be returned.
-        // $singular . '|' . $plural, //<-- this just doesn't works, idk wtf is wrong.
-            $amount > 1
-                ? $plural
-                : $singular,
-            $amount,
-            [],
+        return $this->symfonyTranslator->trans(
+            $singular,
+            ['%count%' => $amount],
             $this->getDomain(),
             $this->getLocale()
         );
@@ -152,10 +146,9 @@ class Symfony extends BaseTranslator
      */
     public function translatePluralInline($message, $amount)
     {
-        return $this->symfonyTranslator->transChoice(
+        return $this->symfonyTranslator->trans(
             $message,
-            $amount,
-            [],
+            ['%count%' => $amount],
             $this->getDomain(),
             $this->getLocale()
         );
