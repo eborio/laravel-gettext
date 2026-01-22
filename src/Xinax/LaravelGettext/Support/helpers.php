@@ -12,7 +12,7 @@ if (!function_exists('_i')) {
      *
      * @return string the message translated and formatted
      */
-    function _i($message, $args = [])
+    function _i($message, $args = null)
     {
 
         $translator  = app(LaravelGettext::class);
@@ -75,16 +75,17 @@ if (!function_exists('_n')) {
      * Can be use an array on args or use the number of the arguments
      *
      * @param  string      $singular the singular message to be translated
+     * @param  string      $plural   the plural message to be translated if the $count > 1
      * @param  int         $count    the number of occurrence to be used to pluralize the $singular
      * @param  array|mixed $args     the tokens values used inside $singular or $plural
      *
      * @return string the message translated, pluralized and formatted
      */
-    function _n($singular, $count, $args = [])
+    function _n($singular, $plural, $count, $args = null)
     {
 
         $translator = app(LaravelGettext::class);
-        $message    = $translator->translatePlural($singular, $count);
+        $message    = $translator->translatePlural($singular, $plural, $count);
 
         if (isset($args) && !is_array($args)) {
             $args = array_slice(func_get_args(), 3);
@@ -109,7 +110,7 @@ if (!function_exists('_s')) {
      *
      * @return string the message translated, pluralized and formatted
      */
-    function _s($message, $count, $args = [])
+    function _s($message, $count, $args = null)
     {
         $translator = app(LaravelGettext::class);
         $message    = $translator->getTranslator()->translatePluralInline($message, $count);

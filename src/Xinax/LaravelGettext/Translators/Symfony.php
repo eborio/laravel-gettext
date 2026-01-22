@@ -121,14 +121,17 @@ class Symfony extends BaseTranslator
      * Translates a plural string
      *
      * @param $singular
+     * @param $plural
      * @param $amount
      *
      * @return string
      */
-    public function translatePlural($singular, $amount)
+    public function translatePlural($singular, $plural, $amount)
     {
         return $this->symfonyTranslator->trans(
-            $singular,
+            $amount > 1
+                ? $plural
+                : $singular,
             ['%count%' => $amount],
             $this->getDomain(),
             $this->getLocale()

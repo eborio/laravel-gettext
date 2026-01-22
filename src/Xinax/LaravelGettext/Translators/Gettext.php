@@ -207,9 +207,9 @@ class Gettext extends BaseTranslator implements TranslatorInterface
      *
      * @return string
      */
-    public function translatePlural($singular, $count)
+    public function translatePlural($singular, $plural, $count)
     {
-        return ngettext($singular, $count);
+        return ngettext($singular, $plural, $count);
     }
 
     public function translatePluralInline($message, $amount)
