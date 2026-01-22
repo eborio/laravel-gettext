@@ -81,7 +81,7 @@ if (!function_exists('_n')) {
      *
      * @return string the message translated, pluralized and formatted
      */
-    function _n($singular, $plural, $count, $args = null)
+    function _n($singular, $plural, $count, $args = [])
     {
 
         $translator = app(LaravelGettext::class);
